@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <a href="{{ route('home') }}">Home</a> |
+    <a href="{{ route('moodify') }}">Home</a> |
     <a href="{{ route('history') }}">View History</a>
     <h1>Analyze Sentiments</h1>
 
