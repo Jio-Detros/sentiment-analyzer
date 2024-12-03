@@ -2,16 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('moodify');
-});
+// Home page
+Route::get('/moodify', function () {
+    return view('moodify'); // Replace with the appropriate view name if necessary
+})->name('moodify');
+
 
 // Analyze Sentiments page
 Route::get('/analyze', function () {
-    return "Analyze Sentiments Page"; // Replace with the appropriate view later
+    return view('moodify-analyze'); // Modify Analyze Page
 })->name('analyze');
 
 // History page
 Route::get('/history', function () {
-    return "View History Page"; // Replace with the appropriate view later
+    return view('moodify-history'); // Moodify History Page
 })->name('history');
+
+
