@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sentiment;
+use App\Models\SentimentAnalysis;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use PhpOffice\PhpWord\IOFactory;
@@ -134,7 +134,7 @@ class SentimentController extends Controller
         }
 
         // Save the sentiment analysis to the database
-        Sentiment::create([
+        SentimentAnalysis::create([
             'input_text' => $text,
             'analysis_result' => $sentimentResult,
             'emotion_detected' => $sentimentEmotion,
@@ -156,13 +156,13 @@ class SentimentController extends Controller
 
     public function history()
     {
-        $sentiments = Sentiment::whereNull('deleted_at')->get();
+        $sentiments = SentimentAnalysis::whereNull('deleted_at')->get();
         return view('history', compact('sentiments'));
     }
 
     public function softDelete($id)
     {
-        $sentiment = Sentiment::findOrFail($id);
+        $sentiment = SentimentAnalysis::findOrFail($id);
         $sentiment->delete();
 
         return response()->json([
@@ -173,7 +173,7 @@ class SentimentController extends Controller
 
     public function generateReport(Request $request, $id)
     {
-        $sentiment = Sentiment::findOrFail($id);
+        $sentiment = SentimentAnalysis::findOrFail($id);
 
         $data = [
             'input' => $sentiment->input_text,
