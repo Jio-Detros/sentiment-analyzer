@@ -14,7 +14,7 @@ class SentimentController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('moodify');
     }
 
     public function create()
@@ -187,8 +187,8 @@ class SentimentController extends Controller
             return view('report', $data)->render(); 
         }
 
-        $pdf = Pdf::loadView('report', $data);
-        $filename = "sentiment_report_{$sentiment->id}.pdf";
+        $pdf = Pdf::loadView('moodify-report', $data);
+        $filename = "moodify_sentiment_report_{$sentiment->id}.pdf";
         return $pdf->download($filename);
     }
 }
