@@ -42,7 +42,6 @@
         <p><strong>Input Text:</strong> {{ $input }}</p>
         <p><strong>Sentiment Result:</strong> {{ $result }}</p>
         <p><strong>Emotion:</strong> {{ $emotion }}</p>
-        <p><strong>Text Features:</strong> {{ $text_features }}</p>
         <p><strong>Date:</strong> {{ $date }}</p>
     </div>
     <div class="footer">

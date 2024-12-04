@@ -150,10 +150,10 @@
         <table>
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Input</th>
-                    <th>Result</th>
-                    <th>Emotion</th>
-                    <th>Text Features</th>
+                    <th>Analysis Result</th>
+                    <th>Emotion Detected</th>
                     <th>Date</th>
                     <th>Actions</th>
                 </tr>
@@ -161,14 +161,13 @@
             <tbody>
                 @foreach ($sentiments as $sentiment)
                     <tr id="row-{{ $sentiment->id }}">
-                        <td>{{ $sentiment->sentiment_input }}</td>
-                        <td>{{ $sentiment->sentiment_result }}</td>
-                        <td>{{ $sentiment->sentiment_emotion }}</td>
-                        <td>{{ $sentiment->text_features }}</td>
-                        <td>{{ $sentiment->sentiment_date }}</td>
+                        <td>{{ $sentiment->id }}</td>
+                        <td>{{ $sentiment->input_text }}</td>
+                        <td>{{ $sentiment->analysis_result }}</td>
+                        <td>{{ $sentiment->emotion_detected }}</td>
+                        <td>{{ $sentiment->analysis_date }}</td>
                         <td class="actions">
                             <button class="delete-btn" data-id="{{ $sentiment->id }}">Delete</button>
-                            <button class="report-btn" data-id="{{ $sentiment->id }}">Generate Report</button>
                         </td>
                     </tr>
                 @endforeach
@@ -191,11 +190,14 @@
                 const id = $(this).data('id');
                 if (confirm('Are you sure you want to delete this item?')) {
                     $.ajax({
-                        url: "{{ route('softDelete', '') }}/" + id,
-                        type: 'POST',
+                        url: "{{ route('softDelete', ':id') }}".replace(':id', id),
+                        type: 'DELETE',
                         data: { _token: '{{ csrf_token() }}' },
                         success: function () {
+                            // Optionally, you can update the UI to reflect the soft delete, 
+                            // such as hiding the row or showing a "soft deleted" status.
                             $('#row-' + id).remove();
+                            alert('Item deleted successfully.');
                         },
                         error: function () {
                             alert('Failed to delete item.');
@@ -203,10 +205,22 @@
                     });
                 }
             });
-
-            // Modal logic for report
+            // Triggered when the 'Generate Report' button is clicked
             $('.report-btn').click(function () {
+                const id = $(this).data('id');
                 $('#reportModal, #modalBackdrop').show();
+
+                // AJAX request to generate the report
+                $.ajax({
+                    url: "{{ route('generateReport', ':id') }}".replace(':id', id),
+                    type: 'GET',
+                    success: function (response) {
+                        $('#reportContent').html(response); // Display the preview content inside the modal
+                    },
+                    error: function () {
+                        alert('Failed to generate report.');
+                    }
+                });
             });
 
             $('#closeModal, #modalBackdrop').click(function () {

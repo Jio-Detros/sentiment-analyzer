@@ -116,10 +116,10 @@ class SentimentController extends Controller
 
         if ($positiveCount > $negativeCount) {
             $sentimentResult = 'Positive';
-            $sentimentEmotion = 'Happy';
+            $sentimentEmotion = 'Happy Norman';
         } elseif ($negativeCount > $positiveCount) {
             $sentimentResult = 'Negative';
-            $sentimentEmotion = 'Sad';
+            $sentimentEmotion = 'Sad Norman';
         }
 
         $textFeatures = [];
@@ -156,7 +156,7 @@ class SentimentController extends Controller
     public function history()
     {
         $sentiments = SentimentAnalysis::whereNull('deleted_at')->get();
-        return view('history', compact('sentiments'));
+        return view('moodify-history', compact('sentiments'));
     }
 
     public function softDelete($id)
@@ -178,7 +178,6 @@ class SentimentController extends Controller
             'input' => $sentiment->input_text,
             'result' => $sentiment->analysis_result,
             'emotion' => $sentiment->emotion_detected,
-            'text_features' => $sentiment->feature_data,
             'date' => $sentiment->analysis_date,
         ];
 
