@@ -29,11 +29,11 @@
 
     <!-- Sentiment Analysis Form -->
     <form id="analyzeForm" action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <textarea name="sentiment_input" id="sentiment_input" placeholder="Enter text to analyze"></textarea><br>
-    <label for="fileInput">Or upload a file:</label>
-    <input type="file" name="fileInput" id="fileInput" accept=".txt,.docx,.pdf"><br>
-    <button type="submit">Analyze</button>
+        @csrf
+        <textarea name="input_text" id="input_text" placeholder="Enter text to analyze"></textarea><br>
+        <label for="fileInput">Or upload a file:</label>
+        <input type="file" name="fileInput" id="fileInput" accept=".txt,.docx,.pdf"><br>
+        <button type="submit">Analyze</button>
     </form>
 
 
@@ -69,7 +69,7 @@
             const formData = new FormData();
             const fileInput = $('#fileInput')[0].files[0];
 
-            formData.append('sentiment_input', $('#sentiment_input').val());
+            formData.append('input_text', $('#input_text').val());
             if (fileInput) {
                 formData.append('fileInput', fileInput);
             }
@@ -82,7 +82,7 @@
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    $('#inputText').text(response.sentiment_input);
+                    $('#inputText').text(response.input_text);
                     $('#positiveCount').text(response.positive_count);
                     $('#negativeCount').text(response.negative_count);
                     $('#positiveMatches').text(response.positive_matches.join(', '));
@@ -91,7 +91,7 @@
                     $('#sentimentEmotion').text(response.sentiment_emotion);
                     $('#textFeatures').text(response.text_features);
 
-                    let text = response.sentiment_input;
+                    let text = response.input_text;
                     let positiveWords = response.positive_matches;
                     let negativeWords = response.negative_matches;
 
