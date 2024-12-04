@@ -58,6 +58,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        
         let sentimentChart = null; // Declare the chart variable globally
 
         $(document).on('submit', '#analyzeForm', function (e) {
@@ -99,7 +100,6 @@
 
                     $('#highlightedText').html(highlightedText);
                     $('#highlightedTextSection').show();
-
                     $('#analysisResults').show();
                     $('#successMessage')
                         .text('Input has been successfully analyzed.')
@@ -117,12 +117,15 @@
                     }
 
                     sentimentChart = new Chart(ctx, {
-                        type: 'pie',
+                        type: 'bar', // Change this line to use a bar chart instead of a pie chart
                         data: {
                             labels: ['Positive', 'Negative', 'Neutral'],
                             datasets: [{
+                                label: 'Sentiment Analysis',
                                 data: [response.positive_count, response.negative_count, neutralCount],
                                 backgroundColor: ['#28a745', '#dc3545', '#6c757d'],
+                                borderColor: ['#155724', '#721c24', '#343a40'],
+                                borderWidth: 1,
                             }],
                         },
                         options: {
@@ -140,6 +143,14 @@
                                             return `${tooltipItem.label}: ${value} (${percentage}%)`;
                                         },
                                     },
+                                },
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                },
+                                y: {
+                                    beginAtZero: true,
                                 },
                             },
                         },
