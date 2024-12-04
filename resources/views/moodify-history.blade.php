@@ -16,30 +16,8 @@
             line-height: 1.6;
         }
 
-        header {
-            background-color: #1DB954;
-            color: white;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        header a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            font-size: 1.1rem;
-        }
-
-        header a:hover {
-            color: #b3e394;
-        }
-
         .container {
-            margin: 20px auto;
+            margin: 40px auto; /* Increased top margin */
             max-width: 1200px;
             background: #282828;
             padding: 20px;
@@ -49,8 +27,33 @@
 
         h1 {
             text-align: center;
-            color: #1DB954;
+            color: #1DB954; /* Spotify Green */
+            margin-bottom: 30px; /* Increased margin-bottom */
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px; /* Added margin-top */
             margin-bottom: 20px;
+        }
+
+        .buttons a {
+            background-color: #1DB954; /* Spotify Green */
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .buttons a:hover {
+            background-color: #16a34a; /* Darker Green */
+            transform: scale(1.05);
         }
 
         table {
@@ -68,7 +71,7 @@
 
         th {
             background-color: #1c1c1c;
-            color: #1DB954;
+            color: #1DB954; /* Spotify Green */
         }
 
         td {
@@ -105,12 +108,12 @@
         }
 
         .report-btn {
-            background-color: #1DB954;
+            background-color: #1DB954; /* Spotify Green */
             color: white;
         }
 
         .report-btn:hover {
-            background-color: #16a34a;
+            background-color: #16a34a; /* Darker Green */
             transform: scale(1.1);
         }
 
@@ -152,7 +155,7 @@
         }
 
         #downloadReport {
-            background-color: #1DB954;
+            background-color: #1DB954; /* Spotify Green */
             color: white;
         }
 
@@ -162,21 +165,21 @@
         }
 
         #downloadReport:hover {
-            background-color: #16a34a;
+            background-color: #16a34a; /* Darker Green */
             transform: scale(1.1);
         }
 
         #closeModal:hover {
-            background-color: #d60000;
+            background-color: #d60000; /* Darker Red */
             transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <header>
+    <div class="buttons">
         <a href="{{ route('moodify') }}">Home</a>
         <a href="{{ route('analyze') }}">Analyze</a>
-    </header>
+    </div>
 
     <div class="container">
         <h1>Sentiment Analysis History</h1>
@@ -210,6 +213,7 @@
     </div>
 </body>
 </html>
+
 
 
     <!-- Modal for Report -->
