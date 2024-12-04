@@ -168,6 +168,7 @@
                         <td>{{ $sentiment->analysis_date }}</td>
                         <td class="actions">
                             <button class="delete-btn" data-id="{{ $sentiment->id }}">Delete</button>
+                            <!--<button class="report-btn" data-id="{{ $sentiment->id }}">Generate Report</button>-->
                         </td>
                     </tr>
                 @endforeach
