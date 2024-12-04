@@ -31,8 +31,6 @@
     <form id="analyzeForm" action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <textarea name="input_text" id="input_text" placeholder="Enter text to analyze"></textarea><br>
-        <label for="fileInput">Or upload a file:</label>
-        <input type="file" name="fileInput" id="fileInput" accept=".txt,.docx,.pdf"><br>
         <button type="submit">Analyze</button>
     </form>
 
@@ -41,13 +39,12 @@
     <div id="analysisResults" style="display: none; margin-top: 20px;">
         <h2>Analysis Results:</h2>
         <p><strong>Input Text:</strong> <span id="inputText"></span></p>
-        <p><strong>Positive Words Count:</strong> <span id="positiveCount"></span></p>
-        <p><strong>Negative Words Count:</strong> <span id="negativeCount"></span></p>
-        <p><strong>Positive Words Found:</strong> <span id="positiveMatches"></span></p>
-        <p><strong>Negative Words Found:</strong> <span id="negativeMatches"></span></p>
+        <p><strong>Positive Words:</strong> <span id="positiveCount"></span></p>
+        <p><strong>Negative Words:</strong> <span id="negativeCount"></span></p>
+        <p><strong>Positive Words Detected:</strong> <span id="positiveMatches"></span></p>
+        <p><strong>Negative Words Detected:</strong> <span id="negativeMatches"></span></p>
         <p><strong>Overall Sentiment:</strong> <span id="sentimentResult"></span></p>
         <p><strong>Emotion:</strong> <span id="sentimentEmotion"></span></p>
-        <p><strong>Text Features:</strong> <span id="textFeatures"></span></p>
     </div>
 
     <!-- Highlighted Text Section -->
@@ -67,12 +64,7 @@
             e.preventDefault();
 
             const formData = new FormData();
-            const fileInput = $('#fileInput')[0].files[0];
-
             formData.append('input_text', $('#input_text').val());
-            if (fileInput) {
-                formData.append('fileInput', fileInput);
-            }
             formData.append('_token', '{{ csrf_token() }}');
 
             $.ajax({
@@ -87,8 +79,8 @@
                     $('#negativeCount').text(response.negative_count);
                     $('#positiveMatches').text(response.positive_matches.join(', '));
                     $('#negativeMatches').text(response.negative_matches.join(', '));
-                    $('#sentimentResult').text(response.sentiment_result);
-                    $('#sentimentEmotion').text(response.sentiment_emotion);
+                    $('#sentimentResult').text(response.analysis_result);
+                    $('#sentimentEmotion').text(response.emotion_detected);
                     $('#textFeatures').text(response.text_features);
 
                     let text = response.input_text;

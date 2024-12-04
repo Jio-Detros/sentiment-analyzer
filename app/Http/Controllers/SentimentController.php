@@ -26,7 +26,6 @@ class SentimentController extends Controller
     {
         $request->validate([
             'input_text' => 'nullable|string',
-            'fileInput' => 'nullable|file|mimes:txt,docx,pdf',
         ]);
 
         $text = $request->input_text ?? ''; // Get input text or set as empty string.
@@ -78,7 +77,7 @@ class SentimentController extends Controller
         $negativeMatches = [];
 
         // Initialize Azure Blob Storage Client
-        $connectionString =  'AZURE_CONNECTION_STRING';
+        $connectionString =  env('AZURE_STORAGE_CONNECTION_STRING');
         $blobClient = BlobRestProxy::createBlobService($connectionString);
 
         try {
