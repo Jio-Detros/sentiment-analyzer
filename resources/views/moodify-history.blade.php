@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moodify - Sentiment History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
-            font-family: 'Roboto', Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212;
-            color: #fff;
+            background-color: #191414;
+            color: white;
+            line-height: 1.6;
         }
 
         header {
@@ -28,8 +29,9 @@
         header a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: color 0.3s;
+            font-size: 1.1rem;
         }
 
         header a:hover {
@@ -39,7 +41,7 @@
         .container {
             margin: 20px auto;
             max-width: 1200px;
-            background: #181818;
+            background: #282828;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
@@ -65,8 +67,8 @@
         }
 
         th {
-            background-color: #282828;
-            color: #fff;
+            background-color: #1c1c1c;
+            color: #1DB954;
         }
 
         td {
@@ -89,6 +91,7 @@
             cursor: pointer;
             border-radius: 20px;
             transition: background-color 0.3s, transform 0.2s;
+            font-weight: 600;
         }
 
         .delete-btn {
@@ -144,7 +147,7 @@
             border: none;
             border-radius: 20px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             transition: background-color 0.3s, transform 0.2s;
         }
 
@@ -205,6 +208,9 @@
             </tbody>
         </table>
     </div>
+</body>
+</html>
+
 
     <!-- Modal for Report -->
     <div id="reportModal">
