@@ -7,71 +7,88 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #121212;
+            color: #fff;
         }
 
         header {
-            background-color: #4CAF50;
+            background-color: #1DB954;
             color: white;
             padding: 15px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
         header a {
             color: white;
             text-decoration: none;
-            margin: 0 10px;
+            font-weight: bold;
+            transition: color 0.3s;
         }
 
         header a:hover {
-            text-decoration: underline;
+            color: #b3e394;
         }
 
         .container {
             margin: 20px auto;
             max-width: 1200px;
-            background: white;
+            background: #181818;
             padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #1DB954;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            color: #ddd;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #333;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #f2f2f2;
+            background-color: #282828;
+            color: #fff;
         }
 
         td {
             word-wrap: break-word;
-            max-width: 150px;
+            max-width: 200px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #242424;
+        }
+
+        tr:hover {
+            background-color: #333;
         }
 
         .actions button {
             margin: 5px;
-            padding: 5px 10px;
+            padding: 8px 12px;
             border: none;
             cursor: pointer;
-            border-radius: 3px;
+            border-radius: 20px;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         .delete-btn {
@@ -81,15 +98,17 @@
 
         .delete-btn:hover {
             background-color: #d60000;
+            transform: scale(1.1);
         }
 
         .report-btn {
-            background-color: #4CAF50;
+            background-color: #1DB954;
             color: white;
         }
 
         .report-btn:hover {
-            background-color: #389E40;
+            background-color: #16a34a;
+            transform: scale(1.1);
         }
 
         #reportModal {
@@ -98,14 +117,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
-            border: 1px solid #ccc;
+            background: #1c1c1c;
             padding: 20px;
-            z-index: 1000;
+            border-radius: 10px;
             width: 80%;
             max-height: 80%;
             overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
         }
 
         #modalBackdrop {
@@ -115,26 +134,38 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 999;
         }
 
         #downloadReport, #closeModal {
             margin: 10px 5px;
-            padding: 10px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 3px;
+            border-radius: 20px;
             cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
         #downloadReport {
-            background-color: green;
+            background-color: #1DB954;
             color: white;
         }
 
         #closeModal {
-            background-color: red;
+            background-color: #ff4d4d;
             color: white;
+        }
+
+        #downloadReport:hover {
+            background-color: #16a34a;
+            transform: scale(1.1);
+        }
+
+        #closeModal:hover {
+            background-color: #d60000;
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -168,7 +199,6 @@
                         <td>{{ $sentiment->analysis_date }}</td>
                         <td class="actions">
                             <button class="delete-btn" data-id="{{ $sentiment->id }}">Delete</button>
-                            <!--<button class="report-btn" data-id="{{ $sentiment->id }}">Generate Report</button>-->
                         </td>
                     </tr>
                 @endforeach
