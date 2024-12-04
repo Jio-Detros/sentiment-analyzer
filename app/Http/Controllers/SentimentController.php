@@ -78,19 +78,19 @@ class SentimentController extends Controller
         $negativeMatches = [];
 
         // Initialize Azure Blob Storage Client
-        $connectionString = 'DefaultEndpointsProtocol=https;AccountName=your_account_name;AccountKey=your_account_key;EndpointSuffix=core.windows.net';
+        $connectionString =  'AZURE_CONNECTION_STRING';
         $blobClient = BlobRestProxy::createBlobService($connectionString);
 
         try {
             // Retrieve positive and negative words
-            $positiveBlob = $blobClient->getBlob('lexicon', 'positive_words.txt');
+            $positiveBlob = $blobClient->getBlob('moodify', 'positive_words.txt');
             $positiveWords = array_map('trim', explode("\n", stream_get_contents($positiveBlob->getContentStream())));
 
-            $negativeBlob = $blobClient->getBlob('lexicon', 'negative_words.txt');
+            $negativeBlob = $blobClient->getBlob('moodify', 'negative_words.txt');
             $negativeWords = array_map('trim', explode("\n", stream_get_contents($negativeBlob->getContentStream())));
         } catch (ServiceException $e) {
             \Log::error('Azure Blob Storage error: ' . $e->getCode() . ' - ' . $e->getMessage());
-            return response()->json(['error' => 'Failed to retrieve lexicon files from Azure Blob Storage.'], 500);
+            return response()->json(['error' => 'Failed to retrieve Modify files from Azure Blob Storage.'], 500);
         }
 
         // Count words using lexicon files

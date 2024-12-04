@@ -8,10 +8,13 @@ Route::get('/', function () {
     return view('moodify');
 })->name('moodify');
 
-// Analyze Sentiments page
+// Show the form for analysis (GET)
 Route::get('/analyze', function () {
-    return view('moodify-analyze'); 
+    return view('moodify-analyze');
 })->name('analyze');
+
+// Analyze Sentiments page
+Route::post('/analyze', [SentimentController::class, 'store'])->name('store');
 
 // History page
 Route::get('/history', function () {

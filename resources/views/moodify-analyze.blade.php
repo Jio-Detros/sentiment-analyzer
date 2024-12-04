@@ -28,13 +28,14 @@
     <div id="successMessage"></div>
 
     <!-- Sentiment Analysis Form -->
-    <form id="analyzeForm" enctype="multipart/form-data">
-        @csrf
-        <textarea name="sentiment_input" id="sentiment_input" placeholder="Enter text to analyze"></textarea><br>
-        <label for="fileInput">Or upload a file:</label>
-        <input type="file" name="fileInput" id="fileInput" accept=".txt,.docx,.pdf"><br>
-        <button type="submit">Analyze</button>
+    <form id="analyzeForm" action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <textarea name="sentiment_input" id="sentiment_input" placeholder="Enter text to analyze"></textarea><br>
+    <label for="fileInput">Or upload a file:</label>
+    <input type="file" name="fileInput" id="fileInput" accept=".txt,.docx,.pdf"><br>
+    <button type="submit">Analyze</button>
     </form>
+
 
     <!-- Results Section -->
     <div id="analysisResults" style="display: none; margin-top: 20px;">
