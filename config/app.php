@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'env' => env('APP_ENV', 'production'),
+    'env' => env('APP_ENV', 'https://moodify-hfgud3dzgbaufwa5.eastasia-01.azurewebsites.net'),
 
     /*
     |--------------------------------------------------------------------------
