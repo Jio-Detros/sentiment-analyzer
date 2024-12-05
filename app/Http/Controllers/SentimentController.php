@@ -77,7 +77,7 @@ class SentimentController extends Controller
         $negativeMatches = [];
 
         // Initialize Azure Blob Storage Client
-        $connectionString =  env('AZURE_STORAGE_CONNECTION_STRING');
+        $connectionString =  env('AZURE_STORAGE_CONNECTION_STRING'); 
         $blobClient = BlobRestProxy::createBlobService($connectionString);
 
         try {
