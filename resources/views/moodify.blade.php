@@ -55,9 +55,8 @@
         }
     </style>
 </head>
-<body>
     <h1>Welcome to Moodify</h1>
-    <a href="{{ route('analyze') }}">Analyze Sentiments</a>
+    <a href="{{ route('analyze') }}">Analyze Sentiments</a></br>
     <a href="{{ route('history') }}">View History</a>
 
     <footer>Moodify 2024. All rights reserved</footer>
